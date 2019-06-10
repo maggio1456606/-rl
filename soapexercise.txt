@@ -1,0 +1,47 @@
+SOAP Exercise
+
+- SERVER : Create a new project Maven -> new Java Application.
+	Then, modify the 'pom' file adding these dependencies:
+	
+	<dependencies>
+        <dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-frontend-jaxws</artifactId>
+    <version>3.1.6</version>
+</dependency>
+
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13-beta-3</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-transports-http-jetty</artifactId>
+    <version>3.1.6</version>
+</dependency>
+    </dependencies>
+
+	and adding this part :
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+        <mainClass> "path".Server</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+
+
+- CLIENT: Create a new Project Maven -> WebApplication. Tom-Cat 6.0.
+	
+	:Adding in pom file the dependencies and build part.
+	:Create a new WebClient -> WSDL -> http://localhost:4444?wsdl
+
