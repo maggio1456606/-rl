@@ -1,0 +1,72 @@
+﻿REST
+
+link utile : https://www.baeldung.com/apache-cxf-rest-api
+
+Rest-Server:
+-	New Maven Project -> new Java Application.
+-	pom file:
+
+<dependencies>
+        <dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+    <version>3.1.7</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-transports-http-jetty</artifactId>
+    <version>3.1.7</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.2</version>
+</dependency>
+    </dependencies>	
+
+-	BankAccount example -> @XmlRootElement (name = "BankAccount" )
+-	Customer example -> @XmlRootElement (name = "BankAccount" )
+
+-	BankManager example -> @
+
+SERVER:
+	{
+
+	JAXRSServerFactoryBean factoryBean = new JAXRSServerFactoryBean();
+        factoryBean.setResourceClasses(BankManager.class);
+        factoryBean.setResourceProvider(new SingletonResourceProvider(new BankManager()));
+        factoryBean.setAddress("http://localhost:4242/");	
+        Server server = factoryBean.create();
+
+	}
+
+CRUD :
+
+GET
+    
+    @GET
+    @Path("accounts/{accountId}")
+    public BankAccount getCourse(@PathParam("accountId") int accountId) {
+        return findById(accountId);
+    }
+
+    private BankAccount findById(int id) {
+        for (Map.Entry<Integer, BankAccount> account : accounts.entrySet()) {
+            if (account.getKey() == id) {
+                return account.getValue();
+            }
+        }
+        return null;
+    }
+
+_____
+_____
+
+Per il CLIENT aggiungere la dependency :
+WEBCLIENT.
+<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-rs-client -->
+<dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-rs-client</artifactId>
+    <version>3.0.4</version>
+</dependency>
