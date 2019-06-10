@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BankAccount>
+    <amount>240000.0</amount>
+    <customer>
+        <name>Luca</name>
+        <uid>1</uid>
+    </customer>
+    <id>1</id>
+</BankAccount>
